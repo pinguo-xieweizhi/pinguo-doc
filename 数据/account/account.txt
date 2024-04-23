@@ -1,0 +1,12 @@
+性能测试登录信息：
+地址：https://ms.pinguo.cn
+账号：xieweizhi@camera360.com
+密码：MetersphereIcc1115#
+uniVpn
+账号：xieweizhi
+密码：Xwz0818#
+首字母是大写哈
+
+GOPRIVATE="code.aliyun.com/MIG-server/*,github.com/pinguo-micro/*,github.com/PGWireless/*,github.com/pinguo-micro/*,github.com/pinguo-icc/*"
+GOPROXY="https://goproxy.cn,direct"
+
