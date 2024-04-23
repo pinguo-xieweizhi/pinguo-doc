@@ -1,0 +1,15 @@
+AI-QA: mongodb://ai-platform:Qd32_platform@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-34049251
+bmall-prod: mongodb://47.241.131.163:48110,161.117.176.38:48110,47.241.20.115:48110/bmall?replicaSet=bmallrec_rs1&readPreference=secondaryPreferred
+CommonDB: mongodb://iam:Rsjdism2ttadQTE%3D@dds-bp1023cb4d5f0a741498-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1023cb4d5f0a742576-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-28796467
+dispatcher-prod: mongodb://root:Disp2020%40patchEr@dds-bp189c31486eccb41204-pub.mongodb.rds.aliyuncs.com:3717,dds-bp189c31486eccb42817-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-38462207
+iam-dev: mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false
+infras-prod: mongodb://infras:Q20HikUn9GQzE%3D@dds-bp1023cb4d5f0a741498-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1023cb4d5f0a742576-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1023cb4d5f0a743412-pub.mongodb.rds.aliyuncs.com:3717/admin?readPreference=secondary&replicaSet=mgset-28796467
+nebula-prod: mongodb://infras:Q20HikUn9GQzE%3D@dds-bp1023cb4d5f0a741498-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1023cb4d5f0a742576-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1023cb4d5f0a743412-pub.mongodb.rds.aliyuncs.com:3717/admin?readPreference=secondary&replicaSet=mgset-28796467
+nebula-qa: mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false
+ops-dev: mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false
+ops-prod: mongodb://ops:Dpmp34B%3D1a@dds-bp1a2ce765c7df241417-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1a2ce765c7df242227-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-55928918&readPreference=primary&ssl=false
+ops-qa: mongodb://root:Oldgirl20220402@dds-bp18678321e991f41210-pub.mongodb.rds.aliyuncs.com:3717,dds-bp18678321e991f42162-pub.mongodb.rds.aliyuncs.com:3717/?authSource=admin&replicaSet=mgset-59911852
+ugc-content: mongodb://ugc-content:bJcLumGr3xcrNZ9m@dds-bp1714ad52a52c441743-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1714ad52a52c442654-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-64943230
+hz-test-db-common: mongodb://ugc-content:bJcLumGr3xcrNZ9m@dds-bp1714ad52a52c441743-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1714ad52a52c442654-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-64943230
+usercenter-prod: mongodb://root:bJcL0derxGrNZ9m@dds-bp1669a0dbb611a43138-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1669a0dbb611a42903-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1669a0dbb611a41111-pub.mongodb.rds.aliyuncs.com:3717/admin?readPreference=secondary&replicaSet=mgset-60801456
+usercenter-qa: mongodb://root:bJcLFPuserGrNZ9m@dds-bp1c01d66a55bde41368-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1c01d66a55bde42616-pub.mongodb.rds.aliyuncs.com:3717/admin
