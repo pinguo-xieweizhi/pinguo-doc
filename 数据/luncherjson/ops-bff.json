@@ -1,0 +1,35 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ops_bff",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/app",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/app",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_OPS_HTTP_ADDRESS":"0.0.0.0:8000",//http监听端口
+                "ICC_OPS_PARAMS_FIELDDEFINITIONSGRPCSERVER":"dns:///127.0.0.1:9001",//字段服务
+                "ICC_OPS_PARAMS_MATERIALPOSITIONSGRPCSERVER":"dns:///127.0.0.1:9005",//素材位服务
+                "ICC_OPS_PARAMS_MATERIALSGRPCSERVER":"dns:///127.0.0.1:9010",//素材服务
+                "ICC_OPS_PARAMS_OPERATIONALPOSITIONSSERVER":"dns:///127.0.0.1:9006",//运营位服务
+                "ICC_OPS_PARAMS_CDPASSOCIATIONSERVER":"dns:///127.0.0.1:9007",//运营位服务
+                "ICC_OPS_PARAMS_DATAENVSERVER":"dns:///127.0.0.1:9003",//环境服务
+                "ICC_OPS_PARAMS_IAMSERVER":"dns:///127.0.0.1:9000", //iam 权限服务
+                "ICC_OPS_PARAMS_H5SERVER":"dns:///127.0.0.1:9008", // h5 服务
+                "ICC_OPS_PARAMS_TAGSERVER":"dns:///127.0.0.1:9011", // h5 服务
+                "ICC_OPS_PARAMS_OPERATIONALPRODUCTSERVER":"dns:///127.0.0.1:9012", // 商品 服务
+                "ICC_OPS_PARAMS_UGCSERVER":"dns:///127.0.0.1:9013", // h5 服务
+                "ICC_OPS_PARAMS_UGCCONTENTSERVER":"dns:///127.0.0.1:9014", // ugc-content服务
+                "ICC_OPS_PARAMS_VIDEOBEATSSERVER":"dns:///127.0.0.1:9022", // ugc-content服务
+            },
+            "args": ["-env=local"]
+        }
+    ]
+}

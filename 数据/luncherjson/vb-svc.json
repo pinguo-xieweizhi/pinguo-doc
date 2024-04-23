@@ -1,0 +1,105 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "svc-stdin-go",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/app",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/app",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                //local
+                //"ICC_OPS_MONGODB_DSN":"mongodb://127.0.0.1:27017/?connect=direct",
+                //dev
+                //"ICC_OPS_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",
+                //data env qa
+                // ICC_OPS_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false",
+                //common qa
+                // "ICC_OPS_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+                // prod
+                "ICC_OPS_MONGODB_DSN":"mongodb://blurrr:yNbS2PEE!WzX@dds-bp1714ad52a52c441743-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1714ad52a52c442654-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-64943230",
+                "ICC_OPS_GRPC_ADDRESS":"0.0.0.0:9022",//grpc监听端口
+                "ICC_OPS_GRPC_TIMEOUT":"360s",
+                "ICC_OPS_SERVICES_TRANSACTIONSVCADDR":"dns:///127.0.0.1:9023",//交易中心
+                //"ICC_OPS_SERVICES_TRANSACTIONSVCADDR":"dns:///172.28.6.124:9070",//交易中心
+                "ICC_OPS_SERVICES_CLOUDSPACESVCADDR":"dns:///127.0.0.1:9020",//云空间服务
+                "ICC_OPS_SERVICES_OPERATIONALBASICSVCADDR":"dns:///127.0.0.1:9007",
+                "ICC_OPS_SERVICES_COUPONSVCADDR":"dns:///127.0.0.1:9015", //兑换码服务
+                "ICC_OPS_SERVICES_ORDERSVCADDR":"dns:///127.0.0.1:9027", // 订单系统
+                "ICC_OPS_SERVICES_PRODUCTADDR":"dns:///127.0.0.1:9012", // 商品系统
+                "ICC_OPS_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+            },
+            "args": ["-env=local","-enable-http=false"]
+            //"args": ["-env=local","kafka-consumer"]
+            //"args": ["-env=local","archive-unarchive"]
+        },
+        {
+            "name": "cli-stdin-go",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {"GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                //local
+                //"ICC_OPS_MONGODB_DSN":"mongodb://127.0.0.1:27017/?connect=direct",
+                //dev
+                //"ICC_OPS_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",
+                 //data env qa
+                 //"ICC_OPS_MONGODB_DSN":"mongodb://root:Oldgirl20220402@dds-bp18678321e991f41210-pub.mongodb.rds.aliyuncs.com:3717,dds-bp18678321e991f42162-pub.mongodb.rds.aliyuncs.com:3717/?authSource=admin&replicaSet=mgset-59911852",
+                 //common qa
+                 "ICC_OPS_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+                "ICC_OPS_GRPC_ADDRESS":"0.0.0.0:9010",//grpc监听端口
+                "ICC_OPS_GRPC_TIMEOUT":"360s",
+                "ICC_OPS_SERVICES_TRANSACTIONSVCADDR":"dns:///127.0.0.1:9012",//交易中心
+                //"ICC_OPS_SERVICES_TRANSACTIONSVCADDR":"dns:///172.28.6.124:9070",//交易中心
+                "ICC_OPS_SERVICES_CLOUDSPACESVCADDR":"dns:///127.0.0.1:9011",//云空间服务
+                "ICC_OPS_SERVICES_OPERATIONALBASICSVCADDR":"dns:///127.0.0.1:9007",
+                "ICC_OPS_SERVICES_COUPONSVCADDR":"dns:///127.0.0.1:9015", //兑换码服务
+                "ICC_OPS_SERVICES_ORDERSVCADDR":"dns:///127.0.0.1:9021" // 订单系统
+            },
+            //"args": ["-env=local","-enable-http=false"]
+            "args": ["-env=local","kafka-consumer"]
+            //"args": ["-env=local","archive-unarchive"]
+        },
+        {
+            "name": "cli-stdin-go-consumer",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {"GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                //local
+                //"ICC_OPS_MONGODB_DSN":"mongodb://127.0.0.1:27017/?connect=direct",
+                //dev
+                // "ICC_OPS_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",
+                 //data env qa
+                "ICC_OPS_MONGODB_DSN":"mongodb://root:Oldgirl20220402@dds-bp18678321e991f41210-pub.mongodb.rds.aliyuncs.com:3717,dds-bp18678321e991f42162-pub.mongodb.rds.aliyuncs.com:3717/?authSource=admin&replicaSet=mgset-59911852",
+                 //common qa
+                //"ICC_OPS_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+                "ICC_OPS_GRPC_ADDRESS":"0.0.0.0:9010",//grpc监听端口
+                "ICC_OPS_GRPC_TIMEOUT":"360s",
+                "ICC_OPS_SERVICES_TRANSACTIONSVCADDR":"dns:///127.0.0.1:9012",//交易中心
+                //"ICC_OPS_SERVICES_TRANSACTIONSVCADDR":"dns:///172.28.6.124:9070",//交易中心
+                "ICC_OPS_SERVICES_CLOUDSPACESVCADDR":"dns:///127.0.0.1:9011",//云空间服务
+                "ICC_OPS_SERVICES_OPERATIONALBASICSVCADDR":"dns:///127.0.0.1:9007",
+                "ICC_OPS_SERVICES_COUPONSVCADDR":"dns:///127.0.0.1:9015", //兑换码服务
+                "ICC_OPS_SERVICES_ORDERSVCADDR":"dns:///127.0.0.1:9021", // 订单系统
+                "ICC_OPS_SERVICES_UGCCONTENTADDR":"dns:///127.0.0.1:9014"
+            },
+            //"args": ["-env=local","-enable-http=false"]
+            "args": ["-env=local","consumer-msg-to-add-tag","-payTagID=6513dd2dd0c69445d744e55b", "-freeTagID=6513dd12d0c69445d744e55a"]
+            //"args": ["-env=local","archive-unarchive"]
+        }
+
+    ]
+}

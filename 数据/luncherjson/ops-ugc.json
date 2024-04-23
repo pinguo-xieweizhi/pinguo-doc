@@ -1,0 +1,66 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ugc_svc",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/app",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/app",//指定可执行文件输出目录
+            "env":{
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                // local 10.0.10.218:3717
+                // "ICC_OPS_MONGODB_DSN":"mongodb://10.0.10.218:3717",//数据库地址
+                //dev 
+                // "ICC_OPS_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",//数据库地址
+                // qa
+                // "ICC_OPS_MONGODB_DSN":"mongodb://root:Oldgirl20220402@dds-bp18678321e991f41210-pub.mongodb.rds.aliyuncs.com:3717,dds-bp18678321e991f42162-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-59911852",//数据库地址
+                // prod
+                "ICC_OPS_MONGODB_DSN":"mongodb://ops:Dpmp34B%3D1a@dds-bp1a2ce765c7df241417-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1a2ce765c7df242227-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-55928918&readPreference=primary&ssl=false",//数据库地址
+                "ICC_OPS_GRPC_ADDRESS":"0.0.0.0:9013",//grpc监听端口
+                //local
+                //"ICC_OPS_MONGODB_DSN":"mongodb://localhost:27017/?connect=direct",//数据库地址
+                "ICC_OPS_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                "ICC_OPS_PARAMS_FIELDDEFINITIONSVCADDR": "dns:///127.0.0.1:9001",//字段服务
+                "ICC_OPS_PARAMS_DATAENVADDR": "dns:///127.0.0.1:9003",//数据环境
+                "ICC_OPS_PARAMS_PLACINGSSVCADDR": "dns:///127.0.0.1:9002",//投放服务
+                "ICC_OPS_PARAMS_UGCCONTENTSVCADDR": "dns:///127.0.0.1:9014",//投放服务
+            },
+            "args": ["-env=dev","-enable-http=0"],
+        },
+        {
+            "name": "ugc_builder",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/builder",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/builder",//指定可执行文件输出目录
+            "env":{
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                // local 10.0.10.218:3717
+                // "ICC_OPS_MONGODB_DSN":"mongodb://10.0.10.218:3717",//数据库地址
+                //dev 
+                "ICC_OPS_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",//数据库地址
+                // qa
+                // "ICC_OPS_MONGODB_DSN":"mongodb://root:Oldgirl20220402@dds-bp18678321e991f41210-pub.mongodb.rds.aliyuncs.com:3717,dds-bp18678321e991f42162-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-59911852",//数据库地址
+                // prod
+                // "ICC_OPS_MONGODB_DSN":"mongodb://ops:Dpmp34B%3D1a@dds-bp1a2ce765c7df241417-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1a2ce765c7df242227-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-55928918&readPreference=primary&ssl=false",//数据库地址
+                "ICC_OPS_GRPC_ADDRESS":"0.0.0.0:9013",//grpc监听端口
+                //local
+                //"ICC_OPS_MONGODB_DSN":"mongodb://localhost:27017/?connect=direct",//数据库地址
+                "ICC_OPS_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                "ICC_OPS_PARAMS_FIELDDEFINITIONSVCADDR": "dns:///127.0.0.1:9001",//字段服务
+                "ICC_OPS_PARAMS_DATAENVADDR": "dns:///127.0.0.1:9003",//数据环境
+                "ICC_OPS_PARAMS_PLACINGSSVCADDR": "dns:///127.0.0.1:9002",//投放服务
+                "ICC_OPS_PARAMS_UGCCONTENTSVCADDR": "dns:///127.0.0.1:9014",//投放服务
+            },
+            "args": ["-env=dev"],
+        },
+    ]
+}

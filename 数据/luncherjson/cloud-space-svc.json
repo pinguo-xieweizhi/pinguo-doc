@@ -1,0 +1,279 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cloudspace",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/app",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/app",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9020",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",//数据库地址
+                // qa
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false",//数据库地址
+                // prod
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+
+            },
+            "args": ["-env=local","-enable-http=true"]
+        },
+        {
+            "name": "cloudspace-handle",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/handle",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cloudspace-handle",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9220",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",//数据库地址
+                // qa
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false",//数据库地址
+                // prod
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+
+            },
+            "args": ["-env=pre","-enable-http=false"]
+        },
+        {
+            "name": "cloudspace-cli",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+            },
+            "args": ["-env=local","clearUnconfirmed"]
+        },
+        {
+            "name": "cloudspace-migrate",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",
+                // prod
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","migrationCapacity"]
+        },
+        {
+            "name": "cloudspace-tryExecute",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+               // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+            },
+            "args": ["-env=local","tryExecute"]
+        },
+        {
+            "name": "cloudspace-doPOFL",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+               // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+            },
+            "args": ["-env=local","doPOFL"]
+        },
+        {
+            "name": "cloudspace-softDelete",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","softDelete"]
+        },
+        {
+            "name": "cloudspace-addFileKey",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                // dev
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","addFileKey"]
+        },
+        {
+            "name": "cloudspace-genFiles",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+               "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","genFilesByResources","-startPage=1","-pageSize=20"]
+        },
+        {
+            "name": "cloudspace-clean-rsd",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","cleanResourceSoftDelete","-startPage=1","-pageSize=20","-notUpdateDay=30" ]
+        },
+        {
+            "name": "cloudspace-sendMockEvent",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","sendMockEvent","-num=2","-concurrent=1"]
+        },
+        {
+            "name": "cloudspace-uploadProcess", // 压测文件上传
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                //"ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","uploadProcess","-num=10000","-concurrent=200"]
+        },
+        {
+            "name": "cloudspace-clean_noref_files", // 压测文件上传
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/cli",//指定入口程序所在目录
+            "showLog":true,
+            "output": "${workspaceFolder}/bin/cli",//指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT":"ignore",
+                "ICC_NEBULA_GRPC_ADDRESS":"0.0.0.0:9000",//grpc监听端口
+                "ICC_NEBULA_GRPC_TIMEOUT":"360s",
+                "ICC_NEBULA_CACHE_DRIVER":"redis://192.168.1.236:6381?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5",//缓存地址
+                // dev
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false"
+                // QA
+                "ICC_NEBULA_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&ssl=false"
+                // prod
+                // "ICC_NEBULA_MONGODB_DSN":"mongodb://nebula:bJncxee4b3&ukjaZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",//数据库地址
+            },
+            "args": ["-env=local","cleanNoReferenceFiles","-startPage=1","-pageSize=20","-notUpdateDay=1"]
+        }
+    ]
+}
