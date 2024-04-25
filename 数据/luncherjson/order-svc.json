@@ -1,0 +1,71 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "svc",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/app", //指定入口程序所在目录
+            "showLog": true,
+            "output": "${workspaceFolder}/bin/app", //指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT": "ignore",
+                //prod
+                //"ICC_OPS_MONGODB_DSN":"mongodb://transaction:bJcxe43%26kjseZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",
+                //dev
+                // "ICC_OPS_MONGODB_DSN": "mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",
+                //local
+                //"ICC_OPS_MONGODB_DSN":"mongodb://127.0.0.1:27017/?connect=direct",
+                //common qa
+                "ICC_OPS_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+                "ICC_OPS_GRPC_ADDRESS": "0.0.0.0:9027", //grpc监听端口
+                "ICC_OPS_HTTP_ADDRESS": "0.0.0.0:8600", //grpc监听端口
+                "ICC_OPS_GRPC_TIMEOUT": "360s",
+                "ICC_OPS_CLIENTS_PAYMENTADDR": "dns:///127.0.0.1:9026",//cdp服务
+                "ICC_OPS_CLIENTS_TRANSADDR": "dns:///127.0.0.1:9023",//cdp服务
+                "ICC_OPS_CLIENTS_INFRAADDR": "dns:///127.0.0.1:9024",//cdp服务
+                "ICC_OPS_CACHE_DRIVER": "redis://192.168.1.236:31000?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5", //缓存地址
+                "ICC_OPS_REDIS_DSN":"redis://r-bp1ykjmwq6hxl3zfdjpd.redis.rds.aliyuncs.com:6379",
+            },
+            "args": [
+                "-env=dev",
+                // "-enable-http=true"
+            ]
+        },
+        {
+            "name": "kafka",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/cmd/kafka", //指定入口程序所在目录
+            "showLog": true,
+            "output": "${workspaceFolder}/bin/kafka", //指定可执行文件输出目录
+            "env": {
+                "GOLANG_PROTOBUF_REGISTRATION_CONFLICT": "ignore",
+                //prod
+                //"ICC_OPS_MONGODB_DSN":"mongodb://transaction:bJcxe43%26kjseZ9m@dds-bp111193f71fe3641931-pub.mongodb.rds.aliyuncs.com:3717,dds-bp111193f71fe3642776-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-62582531",
+                //dev
+                //"ICC_OPS_MONGODB_DSN": "mongodb://a985645edaa0f43f8a2a35e4e541ef5e-1339485449.cn-northwest-1.elb.amazonaws.com.cn:27017/?readPreference=primary&directConnection=true&ssl=false",
+                //local
+                // "ICC_OPS_MONGODB_DSN":"mongodb://192.168.1.236:28017,192.168.1.236:28018,192.168.1.236:28019",
+                //common qa
+                "ICC_OPS_MONGODB_DSN":"mongodb://root:CameMogdb2020%40@dds-bp1ffd2af506b7e41535-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1ffd2af506b7e42884-pub.mongodb.rds.aliyuncs.com:3717/admin?authSource=admin&replicaSet=mgset-34049251&readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+                "ICC_OPS_GRPC_ADDRESS": "0.0.0.0:9027", //grpc监听端口
+                "ICC_OPS_HTTP_ADDRESS": "0.0.0.0:8600", //grpc监听端口
+                "ICC_OPS_GRPC_TIMEOUT": "360s",
+                "ICC_OPS_CLIENTS_PAYMENTADDR": "dns:///127.0.0.1:9026",//cdp服务
+                "ICC_OPS_CLIENTS_TRANSADDR": "dns:///127.0.0.1:9023",//cdp服务
+                "ICC_OPS_CLIENTS_INFRAADDR": "dns:///127.0.0.1:9024",//cdp服务
+                "ICC_OPS_CACHE_DRIVER": "redis://192.168.1.236:31000?dial_timeout=3s&read_timeout=100ms&write_timeout=100ms&max_retries=2&pool_size=5", //缓存地址
+            },
+            "args": [
+                "-env=dev",
+                //"-enable-http=true"
+            ]
+        },
+    ]
+}
