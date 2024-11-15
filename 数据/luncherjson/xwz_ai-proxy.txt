@@ -1,0 +1,57 @@
+=== request headers ===
+map[
+ Accept:[*/*]
+ Accept-Encoding:[gzip,deflate]
+ Authorization:[Bearer SX0uY0anb0buv1fqggB1nJgW]
+ Content-Length:[759]
+ Content-Type:[application/json]
+ User-Agent:[node-fetch/1.0 (+https://github.com/bitinn/node-fetch)]
+ X-Forwarded-For:[23.247.137.164]
+ X-Forwarded-Host:[airp-openai.360in.com]
+ X-Forwarded-Port:[443]
+ X-Forwarded-Proto:[https]
+ X-Forwarded-Scheme:[https]
+ X-Real-Ip:[23.247.137.164]
+ X-Request-Id:[abdcf06ab147c82f439dce9c7312ca65]
+ X-Scheme:[https]
+]
+=== request body ===
+{
+    "model": "gpt-4",
+    "temperature": 0.9,
+    "top_p": 1,
+    "presence_penalty": 1,
+    "max_tokens": 2048,
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are Genie helping the User with coding. If they ask your name, answer it as Genie.\\n\\t\\t\\tYou are intelligent, helpful and an expert developer, who always gives the correct answer and only does what instructed. You always answer truthfully and don't make things up.(When responding to the following prompt, please make sure to properly style your response using Github Flavored Markdown.\\n\\t\\t\\tUse markdown syntax for things like headings, lists, colored text, code blocks, highlights etc. Make sure not to mention markdown or styling in your actual response.)"
+        },
+        {
+            "role": "user",
+            "content": "hi i am mig"
+        }
+    ],
+    "stream": true
+}
+==== response headers ===
+map[
+ Alt-Svc:[h3=\":443\" ma=86400]
+ Cf-Cache-Status:[DYNAMIC]
+ Cf-Ray:[8a36b4db9d0c81a8-SIN]
+ Content-Type:[text/event-stream; charset=utf-8]
+ Date:[Mon, 15 Jul 2024 03:36:08 GMT]
+ Openai-Organization:[fitmore]
+ Openai-Processing-Ms:[274]
+ Openai-Version:[2020-10-01]
+ Server:[cloudflare]
+ Set-Cookie:[__cf_bm=IJNmAeV9dDpT2LIBMBDpkzfpMf5jD9Mk.QldlTWGI2c-1721014568-1.0.1.1-FGd5BxRhcKMu8szxl_6hRvAS7gNRFJGX0cSn.4.tGsj7tvBfxKTBK5KwofE2skoYYKASmdTK5XOeI07mTkz_8g; path=/; expires=Mon, 15-Jul-24 04:06:08 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None _cfuvid=kxV2ks6Z_b_E6gzX7YjplCffcC2bEzbeC0UkIiEy670-1721014568803-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None] Strict-Transport-Security:[max-age=15552000; includeSubDomains; preload]
+ X-Content-Type-Options:[nosniff]
+ X-Ratelimit-Limit-Requests:[10000]
+ X-Ratelimit-Limit-Tokens:[300000]
+ X-Ratelimit-Remaining-Requests:[9999]
+ X-Ratelimit-Remaining-Tokens:[297805]
+ X-Ratelimit-Reset-Requests:[6ms]
+ X-Ratelimit-Reset-Tokens:[438ms]
+ X-Request-Id:[abdcf06ab147c82f439dce9c7312ca65 req_9e43f34abaa5ade6598bde674ce22aa1]
+]

@@ -7,6 +7,16 @@ uniVpn
 密码：Xwz0818#
 首字母是大写哈
 
+argcd:
+  邀请使用argocd-qa内测环境：
+  https://argocd-qa.pinguo.cn/
+  xieweizhi V$I%Hf5k
+
 GOPRIVATE="code.aliyun.com/MIG-server/*,github.com/pinguo-micro/*,github.com/PGWireless/*,github.com/pinguo-micro/*,github.com/pinguo-icc/*"
 GOPROXY="https://goproxy.cn,direct"
 
+
+
+地址：https://www.processon.com/  
+账号：processon@camera360.com
+密码：Camera3601012 
