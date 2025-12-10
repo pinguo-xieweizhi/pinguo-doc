@@ -1,0 +1,380 @@
+classDiagram 
+   namespace 快剪 {
+        class QuickCutRecord {
+            <<entity>>
+            +string id "快剪记录ID"
+            +string userId "用户ID"
+            +string albumId "相册ID"
+            +RecordStatus status "快剪记录状态"
+            +QuickCutRecordType recordType "快剪记录类型"
+            +QuickCutRecordSource source "快剪记录来源"
+            +NotificationSetting notificationSetting "通知设置"
+            +[]QuickCut quickCuts "快剪列表"
+            +DateTime createdAt "创建时间"
+            +DateTime updatedAt "更新时间"
+            +SetQuickCutSaved(idx int, saved bool)
+            +SetQuickCutPublished(idx int, published bool)
+            +SetQuickCutSelected(idx int, selected bool)
+            +UpdateNotifySetting()
+        }
+        class NotificationSetting {
+            <<value object>>
+            +NotifyType type "通知类型"
+            +string objectId "通知对象Id, 微信小程序OpenID或短信手机号"
+            +string appId "应用ID"
+            +string status "通知状态: 未通知，已通知"
+        }
+
+        class NotifyType {
+            <<enumeration>>
+            +WechatMP "微信小程序"
+            +SMS "短信"
+        }
+
+        class QuickCutRecordSource {
+            <<enumeration>>
+            +Photographer "摄影师"
+            +Audience "观众"
+        }
+        class QuickCutRecordType {
+            <<enumeration>>
+            +CustomizeTemplate "自选模版"
+            +AIChoose "AI一键成片"
+            +ReplaceImage "替换图片"
+        }
+        class QuickCutRecordStatus {
+            <<enumeration>>
+            +Initializing "初始化中"
+            +Processing "处理中"
+            +Completed "已完成"
+            +Failed "已失败"
+        }
+
+        class QuickCut {
+            <<value object>>
+            +[]string photoIds "照片ID列表"
+            +QuickCutStatus status "快剪状态"
+            +QuickCutTemplate template "快剪模版"
+            +AITaskId aiTaskId "AI任务ID"
+            +Resource result "快剪结果"
+            +AddWatermark addWatermark "添加水印"
+            +bool saved "已保存"
+            +bool published "已发布"
+            +bool selected "已备选"
+        }
+        class QuickCutStatus {
+            <<enumeration>>
+            +Initializing "初始化中"
+            +Submitted "已提交"
+            +Completed "已完成"
+            +Failed "已失败"
+        }
+
+        class QuickCutTemplate {
+            <<value object>>
+            +string templateId "模版ID"
+            +string templateName "模版名称"
+            +string projectUrl "项目URL"
+            +string dataEnv "数据环境"
+            +string commonResourceUrl "通用资源包"
+        }
+
+        class Resource {
+            <<value object>>
+            +ResourceType type "结果类型"
+            +string title "标题"
+            +string etag "xx/xx/etg（一拍唯一资源标识符）"
+            +int duration "视频时长（秒）"
+            +int size "视频大小（字节）"
+            +int width "视频宽度（像素）"
+            +int height "视频高度（像素）"
+            +Cover cover "封面"
+            +string message "结果消息"
+        }
+
+        class Cover {
+            <<value object>>
+            +string etag "xx/xx/etg（一拍唯一资源标识符）"
+            +int width "封面宽度（像素）"
+            +int height "封面高度（像素）"
+        }
+
+        class ResourceType {
+            <<enumeration>>
+            +Video "成功"
+        }
+
+        class QuickCutRepository {
+            <<interface>>
+            +SaveQuickCutRecord(record QuickCutRecord) error
+            +UpdateQuickCutRecord(record QuickCutRecord) error
+            +GetQuickCutRecord(id string) (QuickCutRecord, error)
+            +ListQuickCutRecords(userId string) ([]QuickCutRecord, error)
+        }
+
+        class QuickCutService {
+            <<service>>
+            +QuickCutRepository quickCutRepo
+            +TemplateSelector tplSelector
+            +ImageSelector imgSelector
+
+            +AIQuickCut(params AIQuickCutParams) error
+            +CustomizeQuickCut(params CustomizeQuickCutParams) error
+            +ReplaceImageQuickCut(params ReplaceImageQuickCutParams) error
+            +QuickCutCallBack(params QuickCutCallBackParams) error
+            +PublishQuickCut(params PublishQuickCutParams) error
+            +ListQuickCutRecords(userId string) ([]QuickCutRecord, error)
+            +AIImageSelection(params AIImageSelectionParams) ([]string, error) :"AI挑图"
+            +QuickCutNotifySetting(params QuickCutNotifySettingParams) error:"快剪通知设置"
+            +SendNotification(quickCut *QuickCutRecord) error:"发送通知"
+        }
+
+        class TemplateSelector {
+            <<interface>>
+            +Select(params SelectTemplateParams):([]QuickCutTemplate, error)
+        }
+
+         class ImageSelector {
+            <<interface>>
+            +Select(params SelectImageParams): (SelectImageResult, error)
+        }
+
+        class Favorites {
+        <<entity>>
+        +string id "收藏ID"
+        +string userId "用户ID"
+        +string albumId "相册ID"
+        +[]FavoritesResource resources "收藏资源列表"
+        +DateTime createdAt "创建时间"
+        +DateTime updatedAt "更新时间"
+
+        + AddResource(resource []FavoritesResource) error "添加收藏资源"
+        + RemoveResource(resource []FavoritesResource) error "移除收藏资源"
+    }
+
+    class FavoritesResource {
+        <<value object>>
+        +string resourceId "资源ID"
+        +ResourceType type "资源类型"
+    }
+
+    class FavoritesRepository {
+        <<interface>>
+        +GetFavorites(albumId,userId string) (Favorites, error)
+        +FavoriteResources(albumId,userId string, resources []FavoritesResource) (Favorites, error)
+        +UnfavoriteResources(albumId,userId string, resources []FavoritesResource) (Favorites, error)
+    }
+
+    }
+
+    QuickCutRecord "1" *-- "n" QuickCut 
+    QuickCutRecord .. QuickCutRecordStatus 
+    QuickCutRecord .. QuickCutRecordType
+    QuickCutRecord .. QuickCutRecordSource
+    QuickCutRecord .. NotificationSetting
+    NotificationSetting .. NotifyType
+    QuickCut "1" --> "1" QuickCutTemplate 
+    QuickCut "1" --> "1" Resource 
+    QuickCut .. QuickCutStatus
+    Resource .. ResourceType
+    Resource .. Cover
+    QuickCutRepository ..> QuickCutRecord
+    QuickCutService --> QuickCutRepository
+    QuickCutService --> TemplateSelector
+    QuickCutService --> ImageSelector
+    FavoritesRepository ..> Favorites
+    Favorites "1" *-- "n" FavoritesResource
+
+namespace 用户中心 {
+    class LoginRecord{
+      <<entity>>
+      +string id
+      +string appName
+      +string deviceId
+      +string userId
+      +string ip
+      +string locale
+      +string location
+      +LoginMethod loginMethod
+      +string platform
+      +string remark
+      +DateTime CreatedAt
+      +DateTime UpdatedAt
+    }
+    class LoginMethod{
+      <<enumeration>>
+      WechatH5
+      WechatMini
+      MobileH5
+      IOS
+      Android
+      PC
+    }
+    class AccountDestroy {
+        <<entity>>
+        +string id
+        +string appName
+        +string userId
+        +string mobile
+        +DateTime CreatedAt
+        +DateTime UpdatedAt
+    }
+    class VerifyCode {
+        <<entity>>
+        +string id
+        +string appName
+        +SendType SendType 
+        +string mobile
+        +int sendCount
+        +VerifyCodeStatus status
+        +string VerifyCode
+        +int VerifyFailNum
+        +DateTime CreatedAt
+        +DateTime UpdatedAt
+    }
+
+    class SendType{
+        <<enumeration>>
+        Login
+        Register
+        ForgetPassword
+        ChangeMobileOne
+        ChangeMobileTwo
+        ConvertAI
+    }
+
+    class VerifyCodeStatus{
+        <<enumeration>>
+        NotUsed
+        Used
+    }
+    class User {
+        <<entity>>
+        +string id
+        +[]string apps
+        +string oldId 
+        +EncryptedString mobile
+        +string maskMobile 
+        +string pwd
+        +UserStatus status
+        +string nickname
+        +string desc
+        +string avatar
+        +string mark
+        +map[ThirdAuthType]ThirdAuthInfo thirdAuthInfos
+    }
+
+    class ThirdAuthType{
+        <<enumeration>>
+        WechatMiniProgram
+        WechatOfficialAccount
+    }
+
+    class ThirdAuthInfo {
+       <<value-object>>
+       +string Name
+       +string avatar
+       +string openId
+       +string unionId 
+       +string thirdAppId
+       +string mobile 
+       +string email
+       +ThirdAuthType authType
+    }
+
+    class AccountDestroyRepository{
+        <<repository>>
+        Get(id string) (*AccountDestroy, error)
+        FindByIDs(ids []string) ([]*AccountDestroy, error)
+        Search(query *AccountDestroySearchOptions) ([]*AccountDestroy, error)
+        Delete(id string) error
+        Create(accountDestroy *AccountDestroy) error
+        Update(accountDestroy *AccountDestroy) error
+        IsDestroyed(userId,appId string) (bool, error)
+    }
+
+    class LoginRecordRepository{
+        <<repository>>
+        Get(id string) (*LoginRecord, error)
+        FindByIDs(ids []string) ([]*LoginRecord, error)
+        Search(query *LoginRecordSearchOptions) ([]*LoginRecord, error)
+        Delete(id string) error
+        Create(loginRecord *LoginRecord) error
+        Update(loginRecord *LoginRecord) error
+        GetByUserId(userId string) ([]*LoginRecord, error)
+        GetLatest(userId string) (*LoginRecord, error)
+    }
+
+    class VerifyCodeRepository{
+        <<repository>>
+        Get(id string) (*VerifyCode, error)
+        FindByIDs(ids []string) ([]*VerifyCode, error)
+        Search(query *VerifyCodeSearchOptions) ([]*VerifyCode, error)
+        Delete(id string) error
+        Create(verifyCode *VerifyCode) error
+        Update(verifyCode *VerifyCode) error
+        GetByMobile(mobile string) (*VerifyCode, error)
+        SendVerifyCode(sendParams *VerifyCodeSendParams) error
+        VerifyVerifyCode(verifyParams *VerifyCodeVerifyParams) error
+    }
+
+    class UserRepository{
+        <<repository>>
+        Get(id string) (*User, error)
+        GetByMobile(mobile,appName string) (*User, error)
+        GetByThirdAuthInfo(authType ThirdAuthType, openId, unionId, thirdAppId string) (*User, error)
+    }
+
+    class UserCenterService {
+        <<service>>
+        +UserRepository userRepo 
+        +VerifyCodeService verifyCodeService
+        +LoginRecordRepository loginRecordRepo
+        +AccountDestroyRepository accountDestroyRepo
+        +LoginByMobileCode(loginParams *UserLoginByMobileCodeParams) error
+        +PwdLogin(loginParams *UserPwdLoginParams) error
+        +UserInfo(userInfoParams *UserInfoParams) (*User, error)
+        +VerifyToken(verifyTokenParams *VerifyTokenParams) (*VerifyTokenResult, error)
+        +ModifyUserInfo(modifyParams *ModifyUserInfoParams) error
+        +SetPassword(setPwdParams *SetPasswordParams) error
+        +ForgetPassword(forgetParams *ForgetPasswordParams) error
+        +ChangePassword(changeParams *ChangePasswordParams) error
+        +ChangeMobileStepOne(changeParams *ChangeMobileParams) error
+        +ChangeMobileStepTwo(changeParams *ChangeMobileParams) error
+        +UserDestroy(destroyParams *UserDestroyParams) error
+        +BindThirdAuth(bindParams *BindThirdAuthParams) error
+        +BindYiBaiUser(bindParams *BindYiBaiUserParams) error
+        +BindMobile(bindParams *BindMobileParams) error
+        +GetById(id string) (*User, error)
+        +GetByMobile(mobile,appName string) (*User, error)
+        +WechatMiniprogramLogin(loginParams *WechatMiniprogramLoginParams) (*User, error)
+        +WechatOfficialAccountLogin(loginParams *WechatOfficialAccountLoginParams) (*User, error)
+    }
+
+    class VerifyCodeService {
+        <<service>>
+        +VerifyCodeRepository verifyCodeRepo
+
+        +SendVerifyCode(sendParams *VerifyCodeSendParams) error
+        +VerifyVerifyCode(verifyParams *VerifyCodeVerifyParams) error
+    }
+}
+    UserCenterService --> VerifyCodeService
+    UserCenterService --> LoginRecordRepository
+    LoginRecordRepository ..> LoginRecord
+    LoginRecord ..> LoginMethod
+    UserCenterService --> AccountDestroyRepository
+    AccountDestroyRepository ..> AccountDestroy
+    UserCenterService --> UserRepository
+    VerifyCodeService --> VerifyCodeRepository
+    VerifyCodeService ..> VerifyCode
+    VerifyCode ..> SendType
+    VerifyCode ..> VerifyCodeStatus
+    UserCenterService ..> User
+    User "0" o--> "n" ThirdAuthInfo
+    ThirdAuthInfo ..> ThirdAuthType
+
+  
+
+   
+ 
